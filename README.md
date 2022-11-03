@@ -18,5 +18,6 @@ Cool epic prototype I made that's a cool epic physics sandbox
 
 **Control**: Slow down camera movement
 
-Move camera by using middle click and dragging around (sorry laptop users!)
+You can also move the camera by using middle click and dragging around
+
 And scroll up and down to zoom in and out
