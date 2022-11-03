@@ -8,6 +8,8 @@ var screen_start_position
 var dragging = false
 var zoom_step = 1.1
 
+var speed = 2.5
+
 func _input(event):
 	## CAMERA ZOOMING ##
 	if event.is_action_released("scroll_up"):
@@ -37,3 +39,29 @@ func zoom_at_point(zoom_change, point):
 	next_camera_position = camera_pos + (-0.5*viewport_size + point)*(current_zoom - next_zoom)
 	zoom = next_zoom
 	global_position = next_camera_position
+
+## CAMERA MOVING ##
+func get_input():
+	# Not gonna lie I didn't expect this to work
+	if Input.is_action_pressed("ui_right"):
+		position.x += speed
+	if Input.is_action_pressed("ui_left"):
+		position.x -= speed
+	if Input.is_action_pressed("ui_down"):
+		position.y += speed
+	if Input.is_action_pressed("ui_up"):
+		position.y -= speed
+	
+	# This part's a little janky, but who cares lmao
+	if Input.is_action_pressed("speed_up"):
+		speed = 5
+	if Input.is_action_just_released("speed_up"):
+		speed = 2.5
+	if Input.is_action_pressed("slow_down"):
+		speed = 1
+	if Input.is_action_just_released("slow_down"):
+		speed = 2.5
+
+func _physics_process(delta):
+	get_input()
+## CAMERA MOVING ##
